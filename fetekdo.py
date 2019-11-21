@@ -21,8 +21,8 @@ def fetekdo():
     for i in list_csv:
         list = list+i
     random.shuffle(list)
+    a=0
     for i in list:
-        a = 0
         duo_sort = Label(wFetekdo, text = list[a] + ' donne à ' + list[a+1])
         duo_sort.pack()
         a = a + 1
