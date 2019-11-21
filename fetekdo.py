@@ -5,20 +5,24 @@ Created on Thu Nov 21 08:58:58 2019
 
 @author: ludodata
 """
-print('Dylan')
+
 import function as func
+from tkinter import *
+
+def funFetekdo():
+    wFetekdo = Toplevel(mainWindow)
+    nextDuo = Button(wFetekdo, text = "Afficher le duo suivant", command = func.fetekdo)
+    nextDuo.pack(side = TOP, ipadx = 40, padx = 30, ipady = 20, pady = 20)
 
 
-choiceMenu = input("Menu:\n\n 1. FETEKDO\n\n 2. ReadMe\n\n 3. Quitter \n\n")
+def readme():
+    wReadme = Toplevel(mainWindow)
 
-while choiceMenu == "1" or "2":
-    if choiceMenu == "1":
-        func.fetekdo()
-        choiceMenu = input("Menu:\n\n 1. FETEKDO\n\n 2. ReadMe\n\n 3. Quitter \n")
-
-    elif choiceMenu == "2":
-        print("REEEAAAADMEEE")
-        choiceMenu = input("Menu:\n\n 1. FETEKDO\n\n 2. ReadMe\n\n 3. Quitter \n")
-
-    else: 
-        break
+mainWindow = Tk()
+choiceMenu1 = Button(mainWindow, text = "FETEKDO", command = funFetekdo)
+choiceMenu1.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+choiceMenu2 = Button(mainWindow, text = "ReadMe", command = readme)
+choiceMenu2.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+choiceMenu3 = Button(mainWindow, text = "Quitter", command = mainWindow.destroy)
+choiceMenu3.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+mainWindow.mainloop()

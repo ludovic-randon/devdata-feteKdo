@@ -8,10 +8,10 @@ Created on Thu Nov 21 08:58:25 2019
 
 import random
 import pandas
-
+from tkinter import *
 
 def fetekdo():
-    df = pandas.read_csv('/Users/ludodata/Simplon/PROJECT/FETEKDO/names.csv')
+    df = pandas.read_csv('/home/utilisateur/Documents/projets/FeteKDO-Project/names.csv')
     list_csv = df.values.tolist()
         
     list = []
