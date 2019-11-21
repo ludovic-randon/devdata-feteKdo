@@ -31,7 +31,7 @@ def fetekdo():
 
 def funFetekdo():
     nextDuo = Button(mainWindow, text = "Afficher le duo suivant", command = fetekdo)
-    nextDuo.pack(side = TOP, ipadx = 40, padx = 30, ipady = 20, pady = 20)
+    nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
 
@@ -41,10 +41,11 @@ def readme():
     wReadme = Toplevel(mainWindow)
 
 mainWindow = Tk()
+mainWindow.title('FETEKDO')
 choiceMenu1 = Button(mainWindow, text = "FETEKDO", command = funFetekdo)
-choiceMenu1.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
 choiceMenu2 = Button(mainWindow, text = "ReadMe", command = readme)
-choiceMenu2.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
 choiceMenu3 = Button(mainWindow, text = "Quitter", command = mainWindow.destroy)
-choiceMenu3.pack(side = TOP, ipadx = 20, padx = 20, ipady = 25, pady = 25)
+choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 mainWindow.mainloop()
