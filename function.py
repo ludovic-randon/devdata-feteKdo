@@ -13,7 +13,7 @@ from tkinter import *
 def fetekdo():
     df = pandas.read_csv('/home/utilisateur/Documents/projets/FeteKDO-Project/names.csv')
     list_csv = df.values.tolist()
-        
+    duo_sorted = Label(wFetekdo, text = 'Le prochain duo est :')
     list = []
     for i in list_csv:
         list = list+i
@@ -27,7 +27,7 @@ def fetekdo():
         continue_sort = input('Tirer le duo suivant ? O/N ')
         if continue_sort.lower() == 'o':
             if i < index_max:
-                print(list[i], ' donne à ', list[i+1])
+                duo_sorted.text = (list[i], ' donne à ', list[i+1])
                 i = i + 1
             else:
                 print(list[len(list) - 1], ' donne à ', list[0])
