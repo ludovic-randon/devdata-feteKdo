@@ -23,12 +23,12 @@ def fetekdo():
     for i in list_csv:
         list = list+i
     random.shuffle(list)
-    duo_sort = Label(text = 'Le premier : ')
+    duo_sort = Label(text = 'Le premier : ', bg = "#B4B7C7")
     duo_sort.pack()
     for i in list:
-        duo_sort = Label(text = i + ' donne à :')
+        duo_sort = Label(text = i + ' donne à :', bg = "#B4B7C7")
         duo_sort.pack()
-    duo_sort = Label(text = list[0] + ', fin de la liste !')
+    duo_sort = Label(text = list[0] + ', fin de la liste !', bg = "#B4B7C7")
     duo_sort.pack()
 
 def funFetekdo():
@@ -42,9 +42,8 @@ def readme():
 
 mainWindow = Tk()
 
-mainWindow.geometry("1200x800")
 mainWindow.title('FETEKDO')
-mainWindow.configure(bg = "#90D3EE")
+mainWindow.configure(bg = "#B4B7C7")
 
 choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekdo)
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
