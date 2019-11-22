@@ -15,6 +15,8 @@ def readme():
     wReadme = Toplevel(mainWindow)
 
 def fetekdo():
+    
+    
     df = pandas.read_csv('names.csv')
     list_csv = df.values.tolist()
     list = []
@@ -35,17 +37,20 @@ def funFetekdo():
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
 
-
-
 def readme():
     wReadme = Toplevel(mainWindow)
 
 mainWindow = Tk()
+
+mainWindow.geometry("1200x800")
 mainWindow.title('FETEKDO')
-choiceMenu1 = Button(mainWindow, text = "FETEKDO", command = funFetekdo)
+mainWindow.configure(bg = "#90D3EE")
+
+choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekdo)
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
-choiceMenu2 = Button(mainWindow, text = "ReadMe", command = readme)
+choiceMenu2 = Button(mainWindow, text = "ReadMe", fg="red", command = readme)
 choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
-choiceMenu3 = Button(mainWindow, text = "Quitter", command = mainWindow.destroy)
+choiceMenu3 = Button(mainWindow, text = "Quitter", fg="black", command = mainWindow.destroy)
 choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+
 mainWindow.mainloop()
