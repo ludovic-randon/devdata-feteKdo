@@ -48,22 +48,23 @@ def addList():
 def delete():
     for i in os.listdir("list_regist"):
         os.remove("list_regist/" + i)
-    
+count = 0
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
+    global count
     global new_list
-    list_clean = new_list
-    random.shuffle(list_clean)
-    # Affichage de la liste
-    for i in list_clean:
-        i = str(i)
-        duo_sort.insert(END, i + ' donne à :')
-    # Affichage du dernier de la liste à recevoir (premier à donner)
-    duo_sort.insert(END, list_clean[0] + ', fin de la liste !')
+    if count < len(new_list):
+        duo_sort.insert(END, new_list[count] + ' donne à :')
+        count = count + 1
+    else:
+        duo_sort.insert(END, new_list[0] + ', fin de la liste !')
+        count = 0
 
 # Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
-    nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
+    global new_list
+    random.shuffle(new_list)
+    nextDuo = Button(mainWindow, text = "Afficher le suivant", fg="red", command = fetekdo)
     nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
