@@ -16,17 +16,24 @@ import os
 def readme():
     wReadme = Toplevel(mainWindow)
 
+# Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
     df = pandas.read_csv('names.csv')
+    # On passe le csv lu dans une variable sous forme de liste
     list_csv = df.values.tolist()
     list = []
+    # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
     for i in list_csv:
         list = list+i
+    # Mélange de la liste pour un affichage rand
     random.shuffle(list)
+    # Affichage de la liste
     for i in list:
         duo_sort.insert(END, i + ' donne à :')
+    # Affichage du dernier de la liste à recevoir (premier à donner)
     duo_sort.insert(END, list[0] + ', fin de la liste !')
 
+# Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
     nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
     nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
@@ -34,19 +41,20 @@ def funFetekdo():
     choiceMenu2.pack_forget()
     duo_sort.pack(side = BOTTOM)
 
-def readme():
-    wReadme = Toplevel(mainWindow)
-
+# Déclaration de la fenêtre principale et design de celle ci + scrollbar
 mainWindow = Tk()
 img = ImageTk.PhotoImage(master = mainWindow, file="kdo.gif")
 panel = Label(mainWindow, image = img)
 panel.pack(side = "left", fill = "both", expand = "yes")
 scrollbar = Scrollbar(mainWindow)
 scrollbar.pack(side = RIGHT, fill = Y)
+# Déclaration de la listbox mais unpack (cf: def funFetekdo():)
 duo_sort = Listbox(mainWindow, yscrollcommand = scrollbar.set, height = 20, width = 45)
 
+# Nom de la fenêtre / Appli
 mainWindow.title('FETEKDO')
 
+# Déclaration et affichage des boutons du 'menu principal'
 choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekdo)
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
 choiceMenu2 = Button(mainWindow, text = "Choisir Fichier", fg="red", command = readme)
