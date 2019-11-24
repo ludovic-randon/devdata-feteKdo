@@ -16,6 +16,7 @@ import shutil
 
 new_list = []
 
+# Fonction de reset de la var new_list en liste vide
 def resetList():
     global new_list
     new_list = []
@@ -27,17 +28,13 @@ def addList():
     # fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
         df = pandas.read_csv(file_convert)
-        # On passe le csv lu dans une variable sous forme de liste
         list_csv = df.values.tolist()
-        # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
         for i in list_csv:
             new_list = new_list+i
     # fichiers txt
     if file_convert.endswith('.txt'):
         df = pandas.read_csv(file_convert, sep="\n", header=None)
-        # On passe le csv lu dans une variable sous forme de liste
         list_csv = df.values.tolist()
-        # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
         for i in list_csv:
             new_list = new_list+i
     # Mélange de la liste pour un affichage rand
@@ -45,10 +42,6 @@ def addList():
         os.remove("list_regist/" + i)
     return new_list
 
-def delete():
-    for i in os.listdir("list_regist"):
-        os.remove("list_regist/" + i)
-    
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
     global new_list
@@ -63,12 +56,24 @@ def fetekdo():
 
 # Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
-    nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
     nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
+    buttonBack.pack()
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
     choiceDelete.pack_forget()
     duo_sort.pack(side = BOTTOM)
+
+# Bouton de retour, on désaffiche les boutons et la liste et réaffiche ceux du menu
+def backMenu():
+    choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
+    choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
+    choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
+    choiceMenu3.pack_forget()
+    choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+    nextDuo.pack_forget()
+    duo_sort.delete(0, END)
+    duo_sort.pack_forget()
+    buttonBack.pack_forget()
 
 # Déclaration de la fenêtre principale et design de celle ci + scrollbar
 mainWindow = Tk()
@@ -77,8 +82,15 @@ panel = Label(mainWindow, image = img)
 panel.pack(side = "left", fill = "both", expand = "yes")
 scrollbar = Scrollbar(mainWindow)
 scrollbar.pack(side = RIGHT, fill = Y)
+
 # Déclaration de la listbox mais unpack (cf: def funFetekdo():)
 duo_sort = Listbox(mainWindow, bd=0, yscrollcommand = scrollbar.set, height = 20, width = 45)
+
+# Déclaration bouton de retour
+buttonBack = Button(mainWindow, text= "Retour", fg="green", command = backMenu)
+
+# Déclaration bouton pour afficher le shuffle liste
+nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
 
 # Nom de la fenêtre / Appli
 mainWindow.title('FETEKDO')
