@@ -14,7 +14,7 @@ from PIL import ImageTk, Image
 import os
 import shutil
 
-# Fonction pour selectionner le fichier souhaité a passer en liste
+# Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
 def readme():
     file_to_read = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project')
     return file_to_read
@@ -23,24 +23,28 @@ def readme():
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
     file_convert = readme()
-    base = os.path.splitext(file_convert)[0]
-    os.rename(file_convert, base + ".csv")
-    file_converted = file_convert
-    df = pandas.read_csv(file_converted)
-    # On passe le csv lu dans une variable sous forme de liste
-    list_csv = df.values.tolist()
-    list = []
-    """ if list in list """
-    # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
-    for i in list_csv:
-        list = list+i
+    new_list = []
+    # fichiers csv
+    if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
+        df = pandas.read_csv(file_convert)
+        # On passe le csv lu dans une variable sous forme de liste
+        list_csv = df.values.tolist()
+        # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
+        for i in list_csv:
+            new_list = new_list+i
+    if file_convert.endswith('.txt'):
+        df = pandas.read_csv(file_convert, sep="\n", header=None)
+        list_csv = df.values.tolist()
+        for i in list_csv:
+            new_list = new_list+i
     # Mélange de la liste pour un affichage rand
-    random.shuffle(list)
+    random.shuffle(new_list)
     # Affichage de la liste
-    for i in list:
+    for i in new_list:
+        i = str(i)
         duo_sort.insert(END, i + ' donne à :')
     # Affichage du dernier de la liste à recevoir (premier à donner)
-    duo_sort.insert(END, list[0] + ', fin de la liste !')
+    duo_sort.insert(END, new_list[0] + ', fin de la liste !')
 
 # Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
