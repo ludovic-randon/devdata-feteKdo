@@ -19,7 +19,7 @@ new_list = []
 def resetList():
     global new_list
     new_list = []
-
+    
 # Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
 def addList():
     global new_list
@@ -44,6 +44,10 @@ def addList():
     for i in os.listdir("list_regist"):
         os.remove("list_regist/" + i)
     return new_list
+
+def delete():
+    for i in os.listdir("list_regist"):
+        os.remove("list_regist/" + i)
     
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
