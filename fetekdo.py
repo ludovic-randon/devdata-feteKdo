@@ -17,27 +17,22 @@ def readme():
     wReadme = Toplevel(mainWindow)
 
 def fetekdo():
-    
-    
     df = pandas.read_csv('names.csv')
     list_csv = df.values.tolist()
     list = []
     for i in list_csv:
         list = list+i
     random.shuffle(list)
-    duo_sort = Label(text = 'Le premier : ')
-    duo_sort.pack()
     for i in list:
-        duo_sort = Label(text = i + ' donne à :')
-        duo_sort.pack()
-    duo_sort = Label(text = list[0] + ', fin de la liste !')
-    duo_sort.pack()
+        duo_sort.insert(END, i + ' donne à :')
+    duo_sort.insert(END, list[0] + ', fin de la liste !')
 
 def funFetekdo():
     nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
     nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
+    duo_sort.pack(side = BOTTOM)
 
 def readme():
     wReadme = Toplevel(mainWindow)
@@ -46,6 +41,9 @@ mainWindow = Tk()
 img = ImageTk.PhotoImage(master = mainWindow, file="kdo.gif")
 panel = Label(mainWindow, image = img)
 panel.pack(side = "left", fill = "both", expand = "yes")
+scrollbar = Scrollbar(mainWindow)
+scrollbar.pack(side = RIGHT, fill = Y)
+duo_sort = Listbox(mainWindow, yscrollcommand = scrollbar.set, height = 20, width = 45)
 
 mainWindow.title('FETEKDO')
 
