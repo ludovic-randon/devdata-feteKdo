@@ -18,14 +18,12 @@ new_list = []
 # Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
 def readme():
     global new_list
-    #file_to_read = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project')
+    new_list = []
     cwd = os.getcwd()
-    for i in cwd:
+    for i in os.listdir(cwd):
         if i.endswith('.txt') or i.endswith('.csv') or i.endswith('.xlsx'):
             os.remove(i)
     file_convert = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project')
-    #return file_to_read
-    #file_convert = readme()
     # fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
         df = pandas.read_csv(file_convert)
