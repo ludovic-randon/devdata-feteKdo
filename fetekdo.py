@@ -49,7 +49,7 @@ panel.pack(side = "left", fill = "both", expand = "yes")
 scrollbar = Scrollbar(mainWindow)
 scrollbar.pack(side = RIGHT, fill = Y)
 # Déclaration de la listbox mais unpack (cf: def funFetekdo():)
-duo_sort = Listbox(mainWindow, yscrollcommand = scrollbar.set, height = 20, width = 45)
+duo_sort = Listbox(mainWindow, bd=0, yscrollcommand = scrollbar.set, height = 20, width = 45)
 
 # Nom de la fenêtre / Appli
 mainWindow.title('FETEKDO')
