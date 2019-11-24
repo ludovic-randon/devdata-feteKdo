@@ -56,8 +56,10 @@ def fetekdo():
 
 # Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
-    nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
-    buttonBack.pack()
+    choiceMenu3.pack_forget()
+    choiceMenu3.pack(side = RIGHT, ipadx = 20, padx = 20, ipady = 25, pady = 15)
+    buttonBack.pack(side = LEFT, ipadx = 20, padx = 20, ipady = 25, pady = 15)
+    nextDuo.pack(side = TOP, ipadx = 60, padx = 10, ipady = 60, pady = 20)
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
     choiceDelete.pack_forget()
@@ -84,25 +86,25 @@ scrollbar = Scrollbar(mainWindow)
 scrollbar.pack(side = RIGHT, fill = Y)
 
 # Déclaration de la listbox mais unpack (cf: def funFetekdo():)
-duo_sort = Listbox(mainWindow, bd=0, yscrollcommand = scrollbar.set, height = 20, width = 45)
+duo_sort = Listbox(mainWindow, font=('calibri', 13, 'bold'), bd=0, yscrollcommand = scrollbar.set, height = 30, width = 80)
 
 # Déclaration bouton de retour
-buttonBack = Button(mainWindow, text= "Retour", fg="green", command = backMenu)
+buttonBack = Button(mainWindow, text= "Retour", font=('calibri', 13, 'bold', 'underline'), bg='#07d800', fg='black', bd=8, command = backMenu)
 
 # Déclaration bouton pour afficher le shuffle liste
-nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", fg="red", command = fetekdo)
+nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", font=('calibri', 13, 'bold', 'underline'), bg='#661aff', fg='black', bd=8, command = fetekdo)
 
 # Nom de la fenêtre / Appli
 mainWindow.title('FETEKDO')
 
 # Déclaration et affichage des boutons du 'menu principal'
-choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekdo)
+choiceMenu1 = Button(mainWindow, text = "FETEKDO", bg='#ffcc00', font=('calibri', 13, 'bold', 'underline'), fg='black', bd=8, command = funFetekdo)
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
-choiceMenu2 = Button(mainWindow, text = "Ajouter une liste", fg="red", command = addList)
+choiceMenu2 = Button(mainWindow, text = "Ajouter une liste", bg='#10d10b', font=('calibri', 12, 'bold'), fg='black', bd=8, command = addList)
 choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
-choiceDelete = Button(mainWindow, text = "Réinitialiser les listes ?", fg="red", command = resetList)
+choiceDelete = Button(mainWindow, text = "Réinitialiser les listes ?", bg='#ea8f04', font=('calibri', 12, 'bold'), fg='black', bd=8, command = resetList)
 choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
-choiceMenu3 = Button(mainWindow, text = "Quitter", fg="black", command = mainWindow.destroy)
+choiceMenu3 = Button(mainWindow, text = "Quitter", bg='#d10b10', font=('calibri', 11, 'bold', 'underline'), fg='black', bd=8, command = mainWindow.destroy)
 choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 
 mainWindow.mainloop()
