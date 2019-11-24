@@ -9,19 +9,28 @@ Created on Thu Nov 21 08:58:58 2019
 import random
 import pandas
 from tkinter import *
+from tkinter import filedialog
 from PIL import ImageTk, Image
 import os
+import shutil
 
-
+# Fonction pour selectionner le fichier souhaité a passer en liste
 def readme():
-    wReadme = Toplevel(mainWindow)
+    file_to_read = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project')
+    return file_to_read
+    
 
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
-    df = pandas.read_csv('names.csv')
+    file_convert = readme()
+    base = os.path.splitext(file_convert)[0]
+    os.rename(file_convert, base + ".csv")
+    file_converted = file_convert
+    df = pandas.read_csv(file_converted)
     # On passe le csv lu dans une variable sous forme de liste
     list_csv = df.values.tolist()
     list = []
+    """ if list in list """
     # Pour les fichiers csv qui ont des liste dans une liste, on concatène les listes
     for i in list_csv:
         list = list+i
