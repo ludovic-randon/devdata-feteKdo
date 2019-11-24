@@ -15,12 +15,14 @@ import os
 import shutil
 
 new_list = []
-# Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
-def readme():
+
+def resetList():
     global new_list
     new_list = []
-    for i in os.listdir("list_regist"):
-        os.remove("list_regist/" + i)
+
+# Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
+def addList():
+    global new_list
     file_convert = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project/list_regist')
     # fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
@@ -39,6 +41,8 @@ def readme():
         for i in list_csv:
             new_list = new_list+i
     # Mélange de la liste pour un affichage rand
+    for i in os.listdir("list_regist"):
+        os.remove("list_regist/" + i)
     return new_list
     
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
@@ -59,6 +63,7 @@ def funFetekdo():
     nextDuo.pack(side = TOP, ipadx = 40, padx = 40, ipady = 20, pady = 40)
     choiceMenu1.pack_forget()
     choiceMenu2.pack_forget()
+    choiceDelete.pack_forget()
     duo_sort.pack(side = BOTTOM)
 
 # Déclaration de la fenêtre principale et design de celle ci + scrollbar
@@ -77,8 +82,10 @@ mainWindow.title('FETEKDO')
 # Déclaration et affichage des boutons du 'menu principal'
 choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekdo)
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
-choiceMenu2 = Button(mainWindow, text = "Choisir Fichier", fg="red", command = readme)
-choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
+choiceMenu2 = Button(mainWindow, text = "Ajouter une liste", fg="red", command = addList)
+choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
+choiceDelete = Button(mainWindow, text = "Réinitialiser les listes ?", fg="red", command = resetList)
+choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
 choiceMenu3 = Button(mainWindow, text = "Quitter", fg="black", command = mainWindow.destroy)
 choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 
