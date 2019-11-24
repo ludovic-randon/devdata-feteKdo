@@ -19,8 +19,7 @@ new_list = []
 def readme():
     global new_list
     new_list = []
-    for i in os.listdir("list_regist"):
-        os.remove("list_regist/" + i)
+ 
     file_convert = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project/list_regist')
     # fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
@@ -40,6 +39,10 @@ def readme():
             new_list = new_list+i
     # Mélange de la liste pour un affichage rand
     return new_list
+
+def delete():
+    for i in os.listdir("list_regist"):
+        os.remove("list_regist/" + i)
     
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
@@ -79,7 +82,9 @@ choiceMenu1 = Button(mainWindow, text = "FETEKDO", fg="red", command = funFetekd
 choiceMenu1.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
 choiceMenu2 = Button(mainWindow, text = "Choisir Fichier", fg="red", command = readme)
 choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 25)
-choiceMenu3 = Button(mainWindow, text = "Quitter", fg="black", command = mainWindow.destroy)
+choiceMenu3 = Button(mainWindow, text = "Delete Files", fg="blue", command = delete)
 choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+choiceMenu4 = Button(mainWindow, text = "Quitter", fg="black", command = mainWindow.destroy)
+choiceMenu4.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 
 mainWindow.mainloop()
