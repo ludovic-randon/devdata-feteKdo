@@ -37,21 +37,25 @@ def addList():
         list_csv = df.values.tolist()
         for i in list_csv:
             new_list = new_list+i
-
+    # Mélange de la liste pour un affichage rand
+    random.shuffle(new_list)
     return new_list
 
+count = 0
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
 def fetekdo():
     global new_list
-    list_clean = new_list
-    # Mélange de la liste pour un affichage rand
-    random.shuffle(list_clean)
+    global count
     # Affichage de la liste
-    for i in list_clean:
-        i = str(i)
-        duo_sort.insert(END, i + ' donne à :')
-    # Affichage du dernier de la liste à recevoir (premier à donner)
-    duo_sort.insert(END, list_clean[0] + ', fin de la liste !')
+    if count < len(new_list) - 1:
+        duo_sort.insert(END, str(new_list[count]) + ' donne à ' + str(new_list[count+1]))
+        count = count + 1
+    else:
+        # Affichage du dernier de la liste à recevoir (premier à donner)
+        duo_sort.insert(END, str(new_list[len(new_list)-1]) + ' donne à ' + str(new_list[0]))
+        duo_sort.insert(END, '!!! FIN DE LISTE !!!')
+        count = 0
+        random.shuffle(new_list)
 
 # Fonction qui passe du menu principal au menu d'exe de la func principale
 def funFetekdo():
@@ -91,7 +95,7 @@ duo_sort = Listbox(mainWindow, font=('calibri', 13, 'bold'), bd=0, yscrollcomman
 buttonBack = Button(mainWindow, text= "Retour", font=('calibri', 13, 'bold', 'underline'), bg='#07d800', fg='black', bd=8, command = backMenu)
 
 # Déclaration bouton pour afficher le shuffle liste
-nextDuo = Button(mainWindow, text = "Afficher la liste aléatoire", font=('calibri', 13, 'bold', 'underline'), bg='#661aff', fg='black', bd=8, command = fetekdo)
+nextDuo = Button(mainWindow, text = "Afficher le duo suivant :", font=('calibri', 13, 'bold', 'underline'), bg='#661aff', fg='black', bd=8, command = fetekdo)
 
 # Nom de la fenêtre / Appli
 mainWindow.title('FETEKDO')
