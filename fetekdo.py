@@ -17,18 +17,25 @@ import pygame
 
 pygame.mixer.init()
 pygame.mixer.music.load("Silent-night.wav")
-
-def playstop():
-    if pygame.mixer.music.play() == True:
-        pygame.mixer.music.stop()
-        pygame.mixer.music.play() == False
-      
-    else:
-        pygame.mixer.music.play()
-        pygame.mixer.music.play()== True
-        
+pygame.mixer.music.play()
+# Boolean music est en lecture 
+music_playing = True 
 
 new_list = []
+
+# Fonction on/off music 
+def playstop():
+    global music_playing
+    if music_playing == True:
+        pygame.mixer.music.pause()
+        music_playing = False
+        choiceMusic.config(bg = "#d10b10")
+    else:
+        pygame.mixer.music.unpause()
+        music_playing = True
+        choiceMusic.config(bg = "green")
+    
+   
 
 # Fonction de reset de la var new_list en liste vide
 def resetList():
@@ -84,11 +91,13 @@ def backMenu():
     choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
     choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
     choiceMenu3.pack_forget()
-    choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+    choiceMenu3.pack(side = RIGHT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
     nextDuo.pack_forget()
+    choiceMusic.pack(side = LEFT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
     duo_sort.delete(0, END)
     duo_sort.pack_forget()
     buttonBack.pack_forget()
+    choiceMusic.pack_forget()
 
 # Déclaration de la fenêtre principale et design de celle ci + scrollbar
 mainWindow = Tk()
@@ -117,7 +126,12 @@ choiceMenu2 = Button(mainWindow, text = "Ajouter une liste", bg='#10d10b', font=
 choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
 choiceDelete = Button(mainWindow, text = "Réinitialiser les listes ?", bg='#ea8f04', font=('calibri', 12, 'bold'), fg='black', bd=8, command = resetList)
 choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
-choiceMenu3 = Button(mainWindow, text = "Quitter", bg='#d10b10', font=('calibri', 11, 'bold', 'underline'), fg='black', bd=8, command = playstop)
-choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+choiceMenu3 = Button(mainWindow, text = "Quitter", bg='#d10b10', font=('calibri', 11, 'bold', 'underline'), fg='black', bd=8, command = mainWindow.destroy)
+choiceMenu3.pack(side = RIGHT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+# Déclaration du bouton music 
+choiceMusic = Button(mainWindow, text = "Play/Stop", bg='green', font=('calibri', 9, 'bold', 'underline'), fg='black', bd=8, command = playstop)
+choiceMusic.pack(side = LEFT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+
+
 
 mainWindow.mainloop()
