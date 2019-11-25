@@ -13,9 +13,20 @@ from tkinter import filedialog
 from PIL import ImageTk, Image
 import os
 import shutil
+import pygame
 
-#Music
+pygame.mixer.init()
+pygame.mixer.music.load("Silent-night.wav")
 
+def playstop():
+    if pygame.mixer.music.play() == True:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.play() == False
+      
+    else:
+        pygame.mixer.music.play()
+        pygame.mixer.music.play()== True
+        
 
 new_list = []
 
@@ -106,7 +117,7 @@ choiceMenu2 = Button(mainWindow, text = "Ajouter une liste", bg='#10d10b', font=
 choiceMenu2.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
 choiceDelete = Button(mainWindow, text = "Réinitialiser les listes ?", bg='#ea8f04', font=('calibri', 12, 'bold'), fg='black', bd=8, command = resetList)
 choiceDelete.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 10)
-choiceMenu3 = Button(mainWindow, text = "Quitter", bg='#d10b10', font=('calibri', 11, 'bold', 'underline'), fg='black', bd=8, command = mainWindow.destroy)
+choiceMenu3 = Button(mainWindow, text = "Quitter", bg='#d10b10', font=('calibri', 11, 'bold', 'underline'), fg='black', bd=8, command = playstop)
 choiceMenu3.pack(side = TOP, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 
 mainWindow.mainloop()
