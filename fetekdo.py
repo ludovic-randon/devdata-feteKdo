@@ -24,7 +24,7 @@ def resetList():
 # Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
 def addList():
     global new_list
-    file_convert = shutil.copy2(filedialog.askopenfilename(), '../FeteKDO-Project/list_regist')
+    file_convert = filedialog.askopenfilename()
     # fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
         df = pandas.read_csv(file_convert)
@@ -38,8 +38,7 @@ def addList():
         for i in list_csv:
             new_list = new_list+i
     # Mélange de la liste pour un affichage rand
-    for i in os.listdir("list_regist"):
-        os.remove("list_regist/" + i)
+
     return new_list
 
 # Fonction principale, lecture de fichier et affichage rand de la liste contenue
