@@ -34,8 +34,6 @@ def playstop():
         pygame.mixer.music.unpause()
         music_playing = True
         choiceMusic.config(bg = "green")
-    
-   
 
 # Fonction de reset de la var new_list en liste vide
 def resetList():
@@ -131,6 +129,7 @@ choiceMenu3.pack(side = RIGHT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
 # Déclaration du bouton music 
 choiceMusic = Button(mainWindow, text = "Play/Stop", bg='green', font=('calibri', 9, 'bold', 'underline'), fg='black', bd=8, command = playstop)
 choiceMusic.pack(side = LEFT, ipadx = 20, padx = 60, ipady = 25, pady = 15)
+
 
 
 
