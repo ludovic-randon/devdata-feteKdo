@@ -21,23 +21,22 @@ def resetList():
     global new_list
     new_list = []
     
-# Fonction pour selectionner le fichier souhaité a passer en liste et le copier dans le rep courant
+# Fonction pour selectionner le fichier souhaité a passer en liste 
 def addList():
     global new_list
     file_convert = filedialog.askopenfilename()
-    # fichiers csv ou xlsx
+    # convert fichiers csv ou xlsx
     if file_convert.endswith('.csv') or file_convert.endswith('.xlsx'):
         df = pandas.read_csv(file_convert)
         list_csv = df.values.tolist()
         for i in list_csv:
             new_list = new_list+i
-    # fichiers txt
+    # convert fichiers txt
     if file_convert.endswith('.txt'):
         df = pandas.read_csv(file_convert, sep="\n", header=None)
         list_csv = df.values.tolist()
         for i in list_csv:
             new_list = new_list+i
-    # Mélange de la liste pour un affichage rand
 
     return new_list
 
@@ -45,6 +44,7 @@ def addList():
 def fetekdo():
     global new_list
     list_clean = new_list
+    # Mélange de la liste pour un affichage rand
     random.shuffle(list_clean)
     # Affichage de la liste
     for i in list_clean:
