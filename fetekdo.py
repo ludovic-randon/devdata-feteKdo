@@ -4,7 +4,7 @@
 """
 Created on Thu Nov 21 08:58:58 2019
 
-@author: ludodata
+@author: Ejhb, Bobba Ash, Dysdylan, Ludo-R
 """
 import random
 import pandas
