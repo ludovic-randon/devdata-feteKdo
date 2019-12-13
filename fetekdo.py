@@ -16,7 +16,11 @@ import shutil
 import pygame
 
 pygame.mixer.init()
+<<<<<<< HEAD
 pygame.mixer.music.load("silent-night.wav")
+=======
+pygame.mixer.music.load("hihi.wav")
+>>>>>>> 12cb39163bf33ed6f9a69bfc2eb966c39c226c2b
 pygame.mixer.music.play()
 # Boolean music est en lecture 
 music_playing = True 
